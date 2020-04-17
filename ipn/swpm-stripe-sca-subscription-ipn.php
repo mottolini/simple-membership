@@ -29,6 +29,7 @@ class SwpmStripeSCASubscriptionIpnHandler {
 
 		$trans_info = explode( '|', $ref_id );
 		$button_id  = isset( $trans_info[1] ) ? absint( $trans_info[1] ) : false;
+		$unique_id  = substr($trans_info[0], 5);
 
 		// Retrieve the CPT for this button
 		$button_cpt = get_post( $button_id );
@@ -110,6 +111,7 @@ class SwpmStripeSCASubscriptionIpnHandler {
 			if ( empty( $return_url ) ) {
 				$return_url = SIMPLE_WP_MEMBERSHIP_SITE_HOME_URL;
 			}
+			$return_url = $return_url . "?txn_id=$txn_id";
 			SwpmMiscUtils::redirect_to_url( $return_url );
 			return;
 		}
@@ -179,6 +181,7 @@ class SwpmStripeSCASubscriptionIpnHandler {
 		$ipn_data['address_country'] = isset( $bd_addr->country ) ? $bd_addr->country : '';
 
 		$ipn_data['payment_button_id'] = $button_id;
+		$ipn_data['payment_unique_id'] = $unique_id;
 		$ipn_data['is_live']           = ! $sandbox_enabled;
 
 		// Handle the membership signup related tasks.
@@ -198,6 +201,7 @@ class SwpmStripeSCASubscriptionIpnHandler {
 		if ( empty( $return_url ) ) {
 			$return_url = SIMPLE_WP_MEMBERSHIP_SITE_HOME_URL;
 		}
+		$return_url = $return_url . "?txn_id=$txn_id";
 		SwpmLog::log_simple_debug( 'Redirecting customer to: ' . $return_url, true );
 		SwpmLog::log_simple_debug( 'End of Stripe SCA Subscription IPN processing.', true, true );
 		SwpmMiscUtils::redirect_to_url( $return_url );
