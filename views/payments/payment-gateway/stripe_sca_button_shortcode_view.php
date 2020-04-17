@@ -81,6 +81,7 @@ function swpm_render_stripe_sca_buy_now_button_sc_output( $button_code, $args ) 
 			var btn = jQuery(this).find('button').attr('disabled', true);
 			jQuery.post('<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>', {
 				'action': 'swpm_stripe_sca_create_checkout_session',
+				'swpm_unique_id': '<?php echo esc_js( $uniqid ); ?>',
 				'swpm_button_id': <?php echo esc_js( $button_id ); ?>,
 				'swpm_page_url': '<?php echo esc_js( $current_url ); ?>'
 				}).done(function (response) {
@@ -210,6 +211,7 @@ function swpm_render_stripe_sca_subscription_button_sc_output( $button_code, $ar
 			var btn = jQuery(this).find('button').attr('disabled', true);
 			jQuery.post('<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>', {
 				'action': 'swpm_stripe_sca_create_checkout_session',
+				'swpm_unique_id': '<?php echo esc_js( $uniqid ); ?>',
 				'swpm_button_id': <?php echo esc_js( $button_id ); ?>,
 				'swpm_page_url': '<?php echo esc_js( $current_url ); ?>'
 				}).done(function (response) {
