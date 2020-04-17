@@ -225,6 +225,7 @@ class SwpmStripeSCABuyNowIpnHandler {
 
 	public function handle_session_create() {
 		$button_id = filter_input( INPUT_POST, 'swpm_button_id', FILTER_SANITIZE_NUMBER_INT );
+		$unique_id = filter_input( INPUT_POST, 'swpm_unique_id', FILTER_SANITIZE_STRING );
 		if ( empty( $button_id ) ) {
 			wp_send_json( array( 'error' => 'No button ID provided' ) );
 		}
@@ -285,7 +286,7 @@ class SwpmStripeSCABuyNowIpnHandler {
 			}
 		}
 
-		$ref_id = 'swpm_' . $uniqid . '|' . $button_id;
+		$ref_id = 'swpm_' . $unique_id . '|' . $button_id;
 
 		//Return, cancel, notifiy URLs
 		if ( empty( $plan_id ) ) {
