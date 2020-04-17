@@ -2,7 +2,7 @@
 /*
 Plugin Name: Simple WordPress Membership
 Version: 3.9.6
-Plugin URI: https://simple-membership-plugin.com/
+Plugin URI: https://github.com/mottolini/simple-membership
 Author: smp7, wp.insider
 Author URI: https://simple-membership-plugin.com/
 Description: A flexible, well-supported, and easy-to-use WordPress membership plugin for offering free and premium content from your WordPress site.

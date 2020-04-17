@@ -30,6 +30,8 @@ class SwpmStripeSCASubscriptionIpnHandler {
 		$trans_info = explode( '|', $ref_id );
 		$button_id  = isset( $trans_info[1] ) ? absint( $trans_info[1] ) : false;
 		$unique_id  = substr($trans_info[0], 5);
+		SwpmLog::log_simple_debug( 'PDRD: trans_info: ' . print_r($trans_info, true), false );
+		SwpmLog::log_simple_debug( 'PDRD: ref_id: ' . print_r($ref_id, true), false );
 
 		// Retrieve the CPT for this button
 		$button_cpt = get_post( $button_id );
@@ -190,6 +192,7 @@ class SwpmStripeSCASubscriptionIpnHandler {
 		// Save the transaction record
 		SwpmTransactions::save_txn_record( $ipn_data );
 		SwpmLog::log_simple_debug( 'Transaction data saved.', true );
+		SwpmLog::log_simple_debug( 'Transaction data: ' . print_r($ipn_data, true), true );
 
 		// Trigger the stripe IPN processed action hook (so other plugins can can listen for this event).
 		do_action( 'swpm_stripe_sca_ipn_processed', $ipn_data );

@@ -106,6 +106,8 @@ function swpm_render_stripe_sca_buy_now_button_sc_output( $button_code, $args ) 
 
 	//apply filter to output additional form fields
 	$coupon_input = '';
+
+	SwpmLog::log_simple_debug( "PDRD ADDFIELD1: $coupon_input, $button_id, $uniqid", false );
 	$coupon_input = apply_filters( 'swpm_payment_form_additional_fields', $coupon_input, $button_id, $uniqid );
 	if ( ! empty( $coupon_input ) ) {
 		$output .= $coupon_input;
@@ -236,6 +238,7 @@ function swpm_render_stripe_sca_subscription_button_sc_output( $button_code, $ar
 
 	//apply filter to output additional form fields
 	$coupon_input = '';
+	SwpmLog::log_simple_debug( "PDRD ADDFIELD2: $coupon_input, $button_id, $uniqid", false );
 	$coupon_input = apply_filters( 'swpm_payment_form_additional_fields', $coupon_input, $button_id, $uniqid );
 	if ( ! empty( $coupon_input ) ) {
 		$output .= $coupon_input;
